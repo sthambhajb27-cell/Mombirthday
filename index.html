@@ -3,93 +3,130 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Diddi ❤️</title>
+<title>Happy Birthday Mumma ❤️</title>
 
-<!-- Confetti Library -->
+<!-- Confetti -->
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
   body {
     margin: 0;
     padding: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: linear-gradient(135deg, #ffe6e6, #fff5f5);
+    background: linear-gradient(145deg, #fff7f9, #ffe8ef);
+    font-family: "Inter", sans-serif;
     overflow-x: hidden;
   }
 
+  /* Soft Gold Sparkles */
+  .sparkle {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    background: radial-gradient(circle, rgba(255,190,215,0.9), rgba(255,170,210,0));
+    border-radius: 50%;
+    top: -10px;
+    animation: sparkleFall 6s linear infinite;
+  }
+
+  @keyframes sparkleFall {
+    0% {transform: translateY(0) scale(1);}
+    100% {transform: translateY(110vh) scale(0.2);}
+  }
+
+  /* Main Card */
   .card {
     max-width: 520px;
-    margin: 60px auto;
+    width: 90%;
     background: white;
-    padding: 28px;
-    border-radius: 20px;
-    box-shadow: 0 0 25px rgba(255, 120, 120, 0.25);
+    margin: 65px auto;
+    padding: 35px 28px;
+    border-radius: 22px;
     text-align: center;
-    animation: fadeIn 1s ease;
+    box-shadow: 0 0 25px rgba(255,150,170,0.28);
+    border: 1.5px solid rgba(255,160,180,0.35);
+    animation: fadeIn 1.2s ease;
   }
 
   @keyframes fadeIn {
-    from {opacity: 0; transform: translateY(20px);}
-    to {opacity: 1; transform: translateY(0);}
+    from {opacity:0; transform:scale(0.96);}
+    to {opacity:1; transform:scale(1);}
   }
 
   h1 {
-    color: #b30000;
-    font-size: 2rem;
-    margin-bottom: 8px;
+    font-family: "Playfair Display", serif;
+    font-size: 2.15rem;
+    margin-bottom: 10px;
+    color: #c7426d;
+    text-shadow: 0 0 6px rgba(255,180,200,0.4);
   }
 
   .subtitle {
-    color: #444;
-    font-size: 1.1rem;
-    margin-bottom: 20px;
+    color: #555;
+    font-size: 1.15rem;
+    margin-bottom: 22px;
   }
 
   button {
-    background: #ff4d4d;
+    background: linear-gradient(135deg, #ff6b9c, #e14478);
     color: white;
     border: none;
     padding: 14px 26px;
     font-size: 1.1rem;
     border-radius: 30px;
-    width: 90%;
+    width: 85%;
     max-width: 260px;
     cursor: pointer;
-    transition: .25s ease;
+    transition: 0.25s ease;
+    font-family: "Inter";
+    box-shadow: 0 4px 12px rgba(255,120,150,0.35);
   }
 
   button:hover {
-    background: #e60000;
     transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(255,120,150,0.45);
   }
 
   .message-box {
     margin-top: 25px;
     padding: 18px;
-    background: #ffecec;
+    background: #ffe6ee;
     border-radius: 12px;
-    font-size: 1.1rem;
-    color: #333;
+    font-size: 1.12rem;
     min-height: 45px;
+    color: #444;
+    border: 1px solid rgba(255,150,170,0.45);
+    animation: fadeIn 0.6s ease;
   }
 
-  .footer {
-    margin-top: 20px;
-    color: #777;
-    font-size: 0.9rem;
+  .signature {
+    font-family: "Playfair Display", serif;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    color: #b3486d;
+    letter-spacing: 0.5px;
+  }
+
+  .signature span {
+    display: block;
+    margin-top: 5px;
+    font-family: "Playfair Display";
+    font-size: 1.4rem;
+    color: #d95a8c;
   }
 
   /* Rose Petals */
   .petal {
     position: fixed;
-    top: -50px;
-    width: 25px;
-    height: 25px;
+    top: -40px;
+    width: 28px;
+    height: 28px;
     background-image: url("https://i.imgur.com/0VCx4aC.png");
-    background-size: contain;
-    background-repeat: no-repeat;
-    opacity: 0.9;
-    animation: fall 6s linear infinite;
+    background-size: cover;
+    opacity: 0.88;
+    animation: fall 7s linear infinite;
   }
 
   @keyframes fall {
@@ -101,23 +138,35 @@
 
 <body>
 
-<!-- Falling Rose Petals Generator -->
+<!-- Sparkles -->
+<script>
+  function sparkle() {
+    const s = document.createElement("div");
+    s.classList.add("sparkle");
+    s.style.left = Math.random()*window.innerWidth + "px";
+    s.style.animationDuration = (3+Math.random()*4)+"s";
+    document.body.appendChild(s);
+    setTimeout(()=>s.remove(), 7000);
+  }
+  setInterval(sparkle, 300);
+</script>
+
+<!-- Rose Petals -->
 <script>
   function createPetal() {
     const petal = document.createElement("div");
     petal.classList.add("petal");
-    petal.style.left = Math.random() * window.innerWidth + "px";
-    petal.style.animationDuration = 4 + Math.random() * 3 + "s";
-    petal.style.opacity = 0.7 + Math.random() * 0.3;
+    petal.style.left = Math.random()*window.innerWidth + "px";
+    petal.style.animationDuration = 4+Math.random()*4+"s";
     document.body.appendChild(petal);
-    setTimeout(() => petal.remove(), 7000);
+    setTimeout(()=>petal.remove(), 8000);
   }
-  setInterval(createPetal, 400);
+  setInterval(createPetal, 450);
 </script>
 
 <div class="card">
-  <h1>Happy Birthday Mumma ❤️</h1>
-  <p class="subtitle">Tap below… I have something special for you 🌸</p>
+  <h1>Happy Birthday Diddi ❤️</h1>
+  <p class="subtitle">Tap below… something beautiful awaits you 🌸</p>
 
   <button onclick="showMessage()">Reveal Surprise 🎁</button>
 
@@ -126,38 +175,42 @@
   <br><br>
 
   <a href="surprise.html">
-    <button style="background:#b30000;">Final Surprise 🌟</button>
+    <button style="background:linear-gradient(135deg,#d9457d,#b63062);">
+      Final Surprise 🌟
+    </button>
   </a>
 
-  <div class="footer">Made with love, by your son ❤️</div>
+  <div class="signature">
+    Crafted with love,<br>
+    <span>— Your dear Son</span>
+  </div>
 </div>
 
 <script>
   const messages = [
-    "You are the strongest person in my life ❤️",
-    "You are my constant motivator 🌷",
-    "Every sacrifice you made shaped my life 🙏",
-    "Your kindness teaches me how to live 🤍",
-    "I will always stand with you, Diddi 💖"
+    "You are my anchor and my motivator,  🌷",
+    "Your love and support raised me into who I am today ❤️",
+    "You deserve every joy in the universe, Mumma 🤍",
+    "You are the reason I believe in goodness and hope  💪",
+    "Every sacrifice you made shaped my world 🙏",
+    "I am always here with you 💖"
   ];
 
   let index = 0;
 
   function showMessage() {
-
-    // Confetti burst
     confetti({
-      particleCount: 80,
-      spread: 70,
+      particleCount: 90,
+      spread: 75,
       origin: {y: 0.2}
     });
 
     const msgBox = document.getElementById("msg");
-    if (index < messages.length) {
+    if(index < messages.length){
       msgBox.innerHTML = messages[index];
       index++;
     } else {
-      msgBox.innerHTML = "I love you forever Diddi 💐";
+      msgBox.innerHTML = "I love you more than any words could describe, Diddi 💐";
     }
   }
 </script>
