@@ -1,78 +1,167 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Diddi ❤️</title>
-  <style>
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(to right, #ffe6e6, #fff5f5);
-      text-align: center;
-      padding: 40px;
-    }
-    h1 {
-      color: #b30000;
-    }
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 15px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-      max-width: 600px;
-      margin: auto;
-    }
-    button {
-      margin-top: 20px;
-      padding: 12px 20px;
-      font-size: 16px;
-      border: none;
-      border-radius: 25px;
-      background: #ff4d4d;
-      color: white;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #e60000;
-    }
-    .message {
-      margin-top: 25px;
-      font-size: 18px;
-      color: #444;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Diddi ❤️</title>
+
+<!-- Confetti Library -->
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #ffe6e6, #fff5f5);
+    overflow-x: hidden;
+  }
+
+  .card {
+    max-width: 520px;
+    margin: 60px auto;
+    background: white;
+    padding: 28px;
+    border-radius: 20px;
+    box-shadow: 0 0 25px rgba(255, 120, 120, 0.25);
+    text-align: center;
+    animation: fadeIn 1s ease;
+  }
+
+  @keyframes fadeIn {
+    from {opacity: 0; transform: translateY(20px);}
+    to {opacity: 1; transform: translateY(0);}
+  }
+
+  h1 {
+    color: #b30000;
+    font-size: 2rem;
+    margin-bottom: 8px;
+  }
+
+  .subtitle {
+    color: #444;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+
+  button {
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 14px 26px;
+    font-size: 1.1rem;
+    border-radius: 30px;
+    width: 90%;
+    max-width: 260px;
+    cursor: pointer;
+    transition: .25s ease;
+  }
+
+  button:hover {
+    background: #e60000;
+    transform: scale(1.05);
+  }
+
+  .message-box {
+    margin-top: 25px;
+    padding: 18px;
+    background: #ffecec;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    color: #333;
+    min-height: 45px;
+  }
+
+  .footer {
+    margin-top: 20px;
+    color: #777;
+    font-size: 0.9rem;
+  }
+
+  /* Rose Petals */
+  .petal {
+    position: fixed;
+    top: -50px;
+    width: 25px;
+    height: 25px;
+    background-image: url("https://i.imgur.com/0VCx4aC.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    opacity: 0.9;
+    animation: fall 6s linear infinite;
+  }
+
+  @keyframes fall {
+    0% {transform: translateY(0) rotate(0deg);}
+    100% {transform: translateY(110vh) rotate(360deg);}
+  }
+</style>
 </head>
+
 <body>
 
-  <div class="card">
-    <h1>Happy Birthday Mumma ❤️</h1>
-    <p>Tap the button below… I have something special for you 🌸</p>
+<!-- Falling Rose Petals Generator -->
+<script>
+  function createPetal() {
+    const petal = document.createElement("div");
+    petal.classList.add("petal");
+    petal.style.left = Math.random() * window.innerWidth + "px";
+    petal.style.animationDuration = 4 + Math.random() * 3 + "s";
+    petal.style.opacity = 0.7 + Math.random() * 0.3;
+    document.body.appendChild(petal);
+    setTimeout(() => petal.remove(), 7000);
+  }
+  setInterval(createPetal, 400);
+</script>
 
-    <button onclick="showMessage()">Reveal Surprise 🎁</button>
+<div class="card">
+  <h1>Happy Birthday Mumma ❤️</h1>
+  <p class="subtitle">Tap below… I have something special for you 🌸</p>
 
-    <div class="message" id="msg"></div>
-  </div>
+  <button onclick="showMessage()">Reveal Surprise 🎁</button>
 
-  <script>
-    const messages = [
-      "You are the strongest person I know 💪",
-      "Thank you for every sacrifice you made for me ❤️",
-      "Your love is my biggest strength 🌼",
-      "I am proud to be your son 💖",
-      "No matter where life takes me, I’ll always be by your side 🤍",
-      " Your next part of the life will be one of the best you have ever lived."
-    ];
+  <div id="msg" class="message-box"></div>
 
-    let index = 0;
+  <br><br>
 
-    function showMessage() {
-      if (index < messages.length) {
-        document.getElementById("msg").innerHTML = messages[index];
-        index++;
-      } else {
-        document.getElementById("msg").innerHTML = "I love you forever, Diddi 💐";
-      }
+  <a href="surprise.html">
+    <button style="background:#b30000;">Final Surprise 🌟</button>
+  </a>
+
+  <div class="footer">Made with love, by your son ❤️</div>
+</div>
+
+<script>
+  const messages = [
+    "You are the strongest person in my life ❤️",
+    "You are my constant motivator 🌷",
+    "Every sacrifice you made shaped my life 🙏",
+    "Your kindness teaches me how to live 🤍",
+    "I will always stand with you, Diddi 💖"
+  ];
+
+  let index = 0;
+
+  function showMessage() {
+
+    // Confetti burst
+    confetti({
+      particleCount: 80,
+      spread: 70,
+      origin: {y: 0.2}
+    });
+
+    const msgBox = document.getElementById("msg");
+    if (index < messages.length) {
+      msgBox.innerHTML = messages[index];
+      index++;
+    } else {
+      msgBox.innerHTML = "I love you forever Diddi 💐";
     }
-  </script>
+  }
+</script>
 
 </body>
 </html>
+
